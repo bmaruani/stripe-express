@@ -10,28 +10,24 @@ app.use(bodyParser.json());
 
 var my_amount = {amount: 12.34, currency: "USD"};
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-  //res.render("index.pug", {keyPublishable, my_amount})
-})
-  
-  
-/*app.post("/charge", function(req, res){
-  var amount = my_amount.amount * 100;
+app.get("/", (req, res) =>
+  res.render("index.pug", {keyPublishable, my_amount}));
+
+app.post("/charge", (req, res) => {
+  let amount = my_amount.amount * 100;
 
   stripe.customers.create({
      email: req.body.stripeEmail,
     source: req.body.stripeToken
   })
-  .then(function(customer) {
+  .then(customer =>
     stripe.charges.create({
       amount,
       description: "Sample Charge",
          currency: my_amount.currency,
          customer: customer.id
-    }); 
-  })
-  .then(function(charge) { res.render("charge.pug", {my_amount}) });
-});*/
+    }))
+  .then(charge => res.render("charge.pug", {my_amount}));
+});
 
 app.listen(3000);
