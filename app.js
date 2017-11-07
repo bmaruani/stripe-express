@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
   
   
 app.post("/charge", function(req, res){
-  let amount = my_amount.amount * 100;
+  var amount = my_amount.amount * 100;
 
   stripe.customers.create({
      email: req.body.stripeEmail,
