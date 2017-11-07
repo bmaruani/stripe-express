@@ -11,12 +11,12 @@ app.use(bodyParser.json());
 var hiddenAmount;
 
 app.get("/", (req, res) =>
-  res.render("index.pug");
+  res.render("index.pug"));
 
 app.post("/pay", (req, res) => {
   hiddenAmount = req.body.my_amount;
-  res.render("pay.pug", {keyPublishable, req.body.my_amount}));
-}
+  res.render("pay.pug", {keyPublishable, req.body.my_amount});
+});
 
 app.post("/charge", (req, res) => {
   let amount = hiddenAmount * 100;
