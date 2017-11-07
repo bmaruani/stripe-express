@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 })
   
   
-app.post("/charge", function(req, res){
+/*app.post("/charge", function(req, res){
   var amount = my_amount.amount * 100;
 
   stripe.customers.create({
@@ -32,6 +32,6 @@ app.post("/charge", function(req, res){
     }); 
   })
   .then(function(charge) { res.render("charge.pug", {my_amount}) });
-});
+});*/
 
 app.listen(3000);
