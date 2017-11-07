@@ -2,7 +2,7 @@ const keyPublishable = "pk_test_6pRNASCoBOKtIshFeQd4XMUh"; // or const keyPublis
 const keySecret = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"; // or const keySecret = process.env.SECRET_KEY;
 
 const app = require("express")();
-/*const stripe = require("stripe")(keySecret);
+const stripe = require("stripe")(keySecret);
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -30,8 +30,6 @@ app.post("/charge", (req, res) => {
   .then(charge => res.render("charge.pug", {my_amount}));
 });
 
-app.listen(3000);*/
+app.listen(80);
 
-app.get('/', (req, res) => res.send('Hello World!'))
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
