@@ -10,9 +10,12 @@ app.use(bodyParser.json());
 
 var my_amount = {amount: 12.34, currency: "USD"};
 
-app.get("/", (req, res) =>
-  res.render("index.pug", {keyPublishable, my_amount}));
-
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+  //res.render("index.pug", {keyPublishable, my_amount})
+})
+  
+  
 app.post("/charge", (req, res) => {
   let amount = my_amount.amount * 100;
 
