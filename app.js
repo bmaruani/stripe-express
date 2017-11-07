@@ -15,7 +15,7 @@ app.get("/", (req, res) =>
 
 app.post("/pay", (req, res) => {
   hiddenAmount = req.body.my_amount;
-  res.render("pay.pug", {keyPublishable, req.body.my_amount});
+  res.render("pay.pug", {keyPublishable, hiddenAmount});
 });
 
 app.post("/charge", (req, res) => {
