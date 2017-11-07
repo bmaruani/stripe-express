@@ -8,13 +8,18 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var my_amount = {amount: 12.34, currency: "USD"};
+var hiddenAmount;
 
 app.get("/", (req, res) =>
-  res.render("index.pug", {keyPublishable, my_amount}));
+  res.render("index.pug");
+
+app.post("/pay", (req, res) => {
+  hiddenAmount = req.body.my_amount;
+  res.render("pay.pug", {keyPublishable, req.body.my_amount}));
+}
 
 app.post("/charge", (req, res) => {
-  let amount = my_amount.amount * 100;
+  let amount = hiddenAmount * 100;
 
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -24,7 +29,7 @@ app.post("/charge", (req, res) => {
     stripe.charges.create({
       amount,
       description: "Sample Charge",
-         currency: my_amount.currency,
+         currency: "EUR",
          customer: customer.id
     }))
   .then(charge => res.render("charge.pug", {my_amount}));
