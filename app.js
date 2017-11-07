@@ -16,21 +16,22 @@ app.get('/', function (req, res) {
 })
   
   
-app.post("/charge", (req, res) => {
+app.post("/charge", function(req, res){
   let amount = my_amount.amount * 100;
 
   stripe.customers.create({
      email: req.body.stripeEmail,
     source: req.body.stripeToken
   })
-  .then(customer =>
+  .then(function(customer) {
     stripe.charges.create({
       amount,
       description: "Sample Charge",
          currency: my_amount.currency,
          customer: customer.id
-    }))
-  .then(charge => res.render("charge.pug", {my_amount}));
+    }); 
+  })
+  .then(function(charge) { res.render("charge.pug", {my_amount}) });
 });
 
 app.listen(3000);
